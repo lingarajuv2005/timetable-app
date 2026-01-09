@@ -1,8 +1,19 @@
-import { auth } from "./firebase.js";
-import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+function login() {
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
 
-window.login = function(){
-  signInWithEmailAndPassword(auth, email.value, password.value)
-    .then(()=>location.href="dashboard.html")
-    .catch(e=>alert(e.message));
+  if (
+    (username === "Lingaraju" && password === "Lingaraju@123") ||
+    (username === "Vishal" && password === "Vishal@123")
+  ) {
+    localStorage.setItem("currentUser", username);
+    window.location.href = "dashboard.html";
+  } else {
+    alert("Invalid Login");
+  }
+}
+
+function logout() {
+  localStorage.removeItem("currentUser");
+  window.location.href = "index.html";
 }
