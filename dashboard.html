@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Timetable</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h2>My Timetable</h2>
+  <button onclick="toggleDark()">Toggle Dark Mode</button>
+
+  <div class="card">
+    <input id="date" type="date">
+    <input id="time" type="time">
+    <input id="classname" placeholder="Class Name">
+    <select id="mode">
+      <option>Online</option>
+      <option>Offline</option>
+    </select>
+    <input id="link" placeholder="Class Link">
+    <button onclick="addClass()">Add Class</button>
+  </div>
+
+  <ul id="list"></ul>
+
+<script type="module" src="js/timetable.js"></script>
+</body>
+</html>
