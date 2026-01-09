@@ -1,0 +1,7 @@
+body{font-family:Arial;background:#f4f4f4;padding:20}
+body.dark{background:#121212;color:white}
+.card{background:white;padding:20;border-radius:8px;max-width:400px;margin:auto}
+body.dark .card{background:#1e1e1e}
+input,select,button{width:100%;margin:5px 0;padding:8px}
+button{cursor:pointer}
+.center{display:flex;justify-content:center;align-items:center;height:100vh}
