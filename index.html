@@ -1,35 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>My Time Table – Login</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <title>My Time Table | Login</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
+<body class="center">
 
-<body class="center dark">
+  <div class="login-card">
+    <h2>My Time Table</h2>
 
-  <div class="card">
-    <h2>🔐 Login</h2>
-
-    <input
-      id="username"
-      placeholder="Username (Lingaraju / Vishal)"
-      autocomplete="off"
-    >
-
-    <input
-      id="password"
-      type="password"
-      placeholder="Password"
-    >
+    <input id="username" placeholder="Username">
+    <input id="password" type="password" placeholder="Password">
 
     <button onclick="login()">Login</button>
+    <p id="error"></p>
   </div>
 
-  <!-- ONLY AUTH SCRIPT ON LOGIN PAGE -->
   <script type="module" src="js/auth.js"></script>
-
 </body>
 </html>
