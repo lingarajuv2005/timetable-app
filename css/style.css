@@ -1,7 +1,111 @@
-body{font-family:Arial;background:#f4f4f4;padding:20}
-body.dark{background:#121212;color:white}
-.card{background:white;padding:20;border-radius:8px;max-width:400px;margin:auto}
-body.dark .card{background:#1e1e1e}
-input,select,button{width:100%;margin:5px 0;padding:8px}
-button{cursor:pointer}
-.center{display:flex;justify-content:center;align-items:center;height:100vh}
+/* ===== RESET ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== ROOT COLORS ===== */
+:root {
+  --bg-light: #f4f4f4;
+  --bg-dark: #020617;
+  --card-light: #ffffff;
+  --card-dark: #0f172a;
+  --text-light: #111827;
+  --text-dark: #e5e7eb;
+  --accent: #22c55e;
+  --border: rgba(255,255,255,0.1);
+}
+
+/* ===== BODY ===== */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--bg-light);
+  color: var(--text-light);
+  min-height: 100vh;
+}
+
+/* ===== DARK MODE ===== */
+body.dark {
+  background: radial-gradient(circle at top, #020617, #000);
+  color: var(--text-dark);
+}
+
+/* ===== CENTER LAYOUT ===== */
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* ===== CARD ===== */
+.card {
+  background: var(--card-light);
+  padding: 28px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+body.dark .card {
+  background: var(--card-dark);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+}
+
+/* ===== HEADING ===== */
+.card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* ===== INPUTS ===== */
+input {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+}
+
+body.dark input {
+  background: #020617;
+  color: white;
+  border: 1px solid var(--border);
+}
+
+input:focus {
+  border-color: var(--accent);
+}
+
+/* ===== BUTTON ===== */
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 14px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #052e16;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 25px rgba(34,197,94,0.4);
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 480px) {
+  .card {
+    padding: 22px;
+  }
+}
