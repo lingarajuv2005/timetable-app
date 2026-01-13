@@ -39,3 +39,4 @@ async function loadNotes() {
 
 window.addNote = addNote;
 window.onload = loadNotes;
+
