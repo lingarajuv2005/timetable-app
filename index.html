@@ -1,21 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Login</title>
+  <meta charset="UTF-8">
+  <title>My Time Table – Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="css/style.css">
 </head>
-<script type="module" src="firebase.js"></script>
-<script type="module" src="timetable.js"></script>
-<script type="module" src="notes.js"></script>
 
-<body class="center">
+<body class="center dark">
+
   <div class="card">
-    <h2>Login</h2>
-    <input id="username" placeholder="Username">
-    <input id="password" type="password" placeholder="Password">
+    <h2>🔐 Login</h2>
+
+    <input
+      id="username"
+      placeholder="Username (Lingaraju / Vishal)"
+      autocomplete="off"
+    >
+
+    <input
+      id="password"
+      type="password"
+      placeholder="Password"
+    >
 
     <button onclick="login()">Login</button>
   </div>
-<script type="module" src="js/auth.js"></script>
+
+  <!-- ONLY AUTH SCRIPT ON LOGIN PAGE -->
+  <script type="module" src="js/auth.js"></script>
+
 </body>
 </html>
