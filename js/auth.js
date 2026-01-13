@@ -1,17 +1,15 @@
-import { getAuth, signInWithEmailAndPassword, signOut } 
+import { getAuth, signInWithEmailAndPassword, signOut }
 from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-import { app } 
-from "./firebase.js";   // make sure path is correct
+import { app } from "./firebase.js";
 
 const auth = getAuth(app);
 
-// LOGIN
+// ✅ MAKE GLOBAL
 window.login = function () {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
 
-  // map username to email
   let email = "";
 
   if (username === "Lingaraju") {
@@ -33,7 +31,6 @@ window.login = function () {
     });
 };
 
-// LOGOUT
 window.logout = function () {
   signOut(auth).then(() => {
     localStorage.removeItem("currentUser");
