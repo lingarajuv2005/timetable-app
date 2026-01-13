@@ -3,12 +3,16 @@ import {
   collection,
   addDoc,
   getDocs
-} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+// 🔐 Check login
 const user = localStorage.getItem("currentUser");
-if (!user) window.location.href = "index.html";
+if (!user) {
+  window.location.href = "index.html";
+}
 
-async function addAttendance(subject, classDate) {
+// ✅ Mark attendance ONLY on class date
+window.addAttendance = async function (subject, classDate) {
   const today = new Date().toISOString().split("T")[0];
 
   if (classDate !== today) {
@@ -16,25 +20,44 @@ async function addAttendance(subject, classDate) {
     return;
   }
 
-  await addDoc(collection(db, "users", user, "attendance"), {
-    subject,
-    date: classDate,
-    status: "Present"
-  });
+  try {
+    await addDoc(collection(db, "users", user, "attendance"), {
+      subject,
+      date: classDate,
+      status: "Present",
+      createdAt: new Date().toISOString()
+    });
 
-  alert("Attendance marked");
-}
+    alert("✅ Attendance marked");
+    loadAttendance();
+  } catch (err) {
+    alert("Error marking attendance");
+    console.error(err);
+  }
+};
 
+// 📄 Load attendance
 async function loadAttendance() {
-  const snapshot = await getDocs(collection(db, "users", user, "attendance"));
   const list = document.getElementById("attendanceList");
+  if (!list) return;
+
   list.innerHTML = "";
 
-  snapshot.forEach(doc => {
-    const d = doc.data();
-    list.innerHTML += `<li>${d.subject} - ${d.date} - ${d.status}</li>`;
-  });
+  try {
+    const snapshot = await getDocs(
+      collection(db, "users", user, "attendance")
+    );
+
+    snapshot.forEach(doc => {
+      const d = doc.data();
+      const li = document.createElement("li");
+      li.textContent = `${d.subject} - ${d.date} - ${d.status}`;
+      list.appendChild(li);
+    });
+  } catch (err) {
+    console.error(err);
+  }
 }
 
-window.addAttendance = addAttendance;
-window.onload = loadAttendance;
+// ✅ Safe load
+document.addEventListener("DOMContentLoaded", loadAttendance);
