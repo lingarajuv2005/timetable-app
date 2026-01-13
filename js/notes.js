@@ -3,12 +3,16 @@ import {
   collection,
   addDoc,
   getDocs
-} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+// 🔐 Check login
 const user = localStorage.getItem("currentUser");
-if (!user) window.location.href = "index.html";
+if (!user) {
+  window.location.href = "index.html";
+}
 
-async function addNote(subject, classEndTime, note) {
+// ➕ Add note ONLY after class end time
+window.addNote = async function (subject, classEndTime, note) {
   const now = new Date();
   const end = new Date(classEndTime);
 
@@ -17,26 +21,43 @@ async function addNote(subject, classEndTime, note) {
     return;
   }
 
-  await addDoc(collection(db, "users", user, "notes"), {
-    subject,
-    note,
-    date: new Date().toISOString()
-  });
+  try {
+    await addDoc(collection(db, "users", user, "notes"), {
+      subject,
+      note,
+      createdAt: new Date().toISOString()
+    });
 
-  alert("Note saved");
-}
+    alert("✅ Note saved");
+    loadNotes();
+  } catch (err) {
+    alert("Error saving note");
+    console.error(err);
+  }
+};
 
+// 📄 Load notes
 async function loadNotes() {
-  const snapshot = await getDocs(collection(db, "users", user, "notes"));
   const list = document.getElementById("notesList");
+  if (!list) return;
+
   list.innerHTML = "";
 
-  snapshot.forEach(doc => {
-    const d = doc.data();
-    list.innerHTML += `<li>${d.subject}: ${d.note}</li>`;
-  });
+  try {
+    const snapshot = await getDocs(
+      collection(db, "users", user, "notes")
+    );
+
+    snapshot.forEach(doc => {
+      const d = doc.data();
+      const li = document.createElement("li");
+      li.textContent = `${d.subject}: ${d.note}`;
+      list.appendChild(li);
+    });
+  } catch (err) {
+    console.error(err);
+  }
 }
 
-window.addNote = addNote;
-window.onload = loadNotes;
-
+// ✅ Safe load
+document.addEventListener("DOMContentLoaded", loadNotes);
