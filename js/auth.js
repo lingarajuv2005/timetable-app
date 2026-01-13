@@ -3,8 +3,8 @@ function login() {
   const p = document.getElementById("password").value;
 
   if (
-    (u === "Lingaraju" && p === "Lingaraju@123") ||
-    (u === "Vishal" && p === "Vishal@123")
+    (u === "Lingaraju" && p === "Welcome@123") ||
+    (u === "Vishal" && p === "Welcome@123")
   ) {
     localStorage.setItem("currentUser", u);
     window.location.href = "dashboard.html";
