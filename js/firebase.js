@@ -1,14 +1,19 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+import { initializeApp } from
+  "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+
+import { getAnalytics } from
+  "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAwS8XqugAkdnLDcSou5r1j-XYf7Jg4S9U",
-  authDomain: "timetable-app-2fa2d.firebaseapp.com",
-  projectId: "timetable-app-2fa2d",
-  storageBucket: "timetable-app-2fa2d.appspot.com",
-  messagingSenderId: "743292593584",
-  appId: "1:743292593584:web:35fd2f2c7b21383ee16275"
+  apiKey: "AIzaSyCjJWYGKvqSITZaunoGqSCL-1DHhXD4TX0",
+  authDomain: "my-time-table-2fd74.firebaseapp.com",
+  projectId: "my-time-table-2fd74",
+  storageBucket: "my-time-table-2fd74.firebasestorage.app",
+  messagingSenderId: "1093466719154",
+  appId: "1:1093466719154:web:f0297e6aa292df6c4adaab",
+  measurementId: "G-Z1WWELFN4T"
 };
 
-const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+// ✅ EXPORT APP
+export const app = initializeApp(firebaseConfig);
+getAnalytics(app);
